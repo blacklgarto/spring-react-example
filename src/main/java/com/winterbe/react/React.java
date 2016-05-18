@@ -29,7 +29,9 @@ public class React {
 
     public  String renderCommentBox(List<Comment> comments) {
         try {
-            Object html = engineHolder.get().invokeFunction("renderServer", comments);
+//            Object html = engineHolder.get().invokeFunction("renderServer", comments);
+            NashornScriptEngine engine = NashSingletone.engine();
+            Object html = engine.invokeFunction("renderServer", comments);
             return String.valueOf(html);
         }
         catch (Exception e) {

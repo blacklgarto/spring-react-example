@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -29,11 +30,31 @@ public class MainController {
 
     @RequestMapping("/")
     public String index(Map<String, Object> model) throws Exception {
+        int i =0;
+//       while (i<100) {
+        System.out.println("start " + new Date());
         List<Comment> comments = service.getComments();
         String commentBox = react.renderCommentBox(comments);
         String data = mapper.writeValueAsString(comments);
         model.put("content", commentBox);
         model.put("data", data);
+        System.out.println("stop " + new Date());
+        i++;
+//       }
+        System.out.println("finish");
+        return "index";
+    }
+
+    @RequestMapping("/t1")
+    public String index1(Map<String, Object> model) throws Exception {
+
+        System.out.println("start " + new Date());
+        List<Comment> comments = service.getComments();
+        String commentBox = react.renderCommentBox(comments);
+        String data = mapper.writeValueAsString(comments);
+        model.put("content", commentBox);
+        model.put("data", data);
+        System.out.println("stop " + new Date());
         return "index";
     }
 
